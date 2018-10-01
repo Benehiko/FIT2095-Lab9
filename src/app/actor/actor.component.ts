@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DatabaseService} from '../database.service';
+import {SelectionService} from '../selection.service';
 
 @Component({
   selector: 'app-actor',
@@ -14,7 +15,7 @@ export class ActorComponent implements OnInit {
   bYear = 0;
   actorId = '';
 
-  constructor(private dbService: DatabaseService) {
+  constructor(private dbService: DatabaseService, private selectionService: SelectionService) {
   }
 
   // Get all Actors
@@ -55,18 +56,19 @@ export class ActorComponent implements OnInit {
 
   // This lifecycle callback function will be invoked with the component get initialized by Angular.
   ngOnInit() {
+    this.getSelection();
     this.onGetActors();
-  }
-
-  changeSection(sectionId) {
-    this.section = sectionId;
-    this.resetValues();
   }
 
   resetValues() {
     this.fullName = '';
     this.bYear = 0;
     this.actorId = '';
+  }
+
+  getSelection() {
+    this.section = this.selectionService.getSelection();
+    this.resetValues();
   }
 
 }
