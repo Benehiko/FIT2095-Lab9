@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- First section: Display all in a tble -->\n<div class=\"section\" *ngIf=\"section==1\">\n  <table class=\"table table-striped\">\n    <tr>\n      <th>Name</th>\n      <th>Birth Year</th>\n    </tr>\n    <tr *ngFor=\"let item of actorsDB\">\n      <td>{{item.name}}</td>\n      <td>{{item.bYear}}</td>\n    </tr>\n  </table>\n</div>\n<!-- Second Section: Add new actor -->\n<div class=\"section\" *ngIf=\"section==2\">\n  <div class=\"form-group\">\n    <label for=\"actorName\">Full Name</label>\n    <input type=\"text\" class=\"form-control\" id=\"actorName\" [(ngModel)]=\"fullName\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"actorName\">Birth Year</label>\n    <input type=\"number\" class=\"form-control\" id=\"actorName\" [(ngModel)]=\"bYear\">\n  </div>\n  <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onSaveActor()\">Save Actor</button>\n</div>\n<!-- Section 3: Update actor -->\n<div class=\"section\" *ngIf=\"section==3\">\n  <table class=\"table table-striped\">\n    <tr>\n      <th>Name</th>\n      <th>Birth Year</th>\n      <th>Select!</th>\n    </tr>\n    <tr *ngFor=\"let item of actorsDB\">\n      <td>{{item.name}}</td>\n      <td>{{item.bYear}}</td>\n      <td>\n        <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onSelectUpdate(item)\">Update</button>\n      </td>\n    </tr>\n  </table>\n  <hr>\n  <div *ngIf=\"actorsDB.length>0\">\n    <div class=\"form-group\">\n      <label for=\"actorName\">Full Name</label>\n      <input type=\"text\" class=\"form-control\" id=\"actorName\" [(ngModel)]=\"fullName\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"actorName\">Birth Year</label>\n      <input type=\"number\" class=\"form-control\" id=\"actorName\" [(ngModel)]=\"bYear\">\n    </div>\n    <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onUpdateActor()\">Update Actor</button>\n  </div>\n</div>\n<!-- Section 4: Delete Actor -->\n<div class=\"section\" *ngIf=\"section==4\">\n  <table class=\"table table-striped\">\n    <tr>\n      <th>Name</th>\n      <th>Birth Year</th>\n      <th>Delete?</th>\n    </tr>\n    <tr *ngFor=\"let item of actorsDB\">\n      <td>{{item.name}}</td>\n      <td>{{item.bYear}}</td>\n      <td>\n        <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onDeleteActor(item)\">Delete</button>\n      </td>\n    </tr>\n  </table>\n</div>\n"
+module.exports = "<div class=\"jumbotron text-center\">\n  <h1>Actors DB System</h1>\n</div>\n<!-- The navigation bar -->\n<nav class=\"navbar navbar-expand-sm bg-light\">\n  <ul class=\"navbar-nav\">\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(1)\">Home</a>\n    </li>\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(2)\">Add Actor</a>\n    </li>\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(3)\">Update Actor</a>\n    </li>\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(4)\">Delete Actor</a>\n    </li>\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(5)\">Add Movie</a>\n    </li>\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(6)\">Delete Movie</a>\n    </li>\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(7)\">Add Movie To Actor</a>\n    </li>\n  </ul>\n</nav>\n\n<div *ngIf=\"section==1\">\n  <table class=\"table table-striped\">\n    <tr>\n      <th>Name</th>\n      <th>Birth Year</th>\n      <th>Movies</th>\n    </tr>\n    <tr *ngFor=\"let item of actorsDB\">\n      <td>{{item.name}}</td>\n      <td>{{item.bYear}}</td>\n      <td>\n        <ul class=\"list-group\">\n          <li class=\"list-group-item\" *ngFor=\"let movie of item.movies\">{{movie.title}}</li>\n        </ul>\n      </td>\n    </tr>\n  </table>\n</div>\n\n<div *ngIf=\"section==2\">\n  <div class=\"form-group\">\n    <label for=\"actorNameAdd\">Full Name</label>\n    <input type=\"text\" class=\"form-control\" id=\"actorNameAdd\" [(ngModel)]=\"fullName\" required>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"actorYearAdd\">Birth Year</label>\n    <input type=\"date\" class=\"form-control\" id=\"actorYearAdd\" min=\"1800\" max=\"2018\" [(ngModel)]=\"bYear\" required>\n  </div>\n  <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onSaveActor()\">Save Actor</button>\n</div>\n\n<div *ngIf=\"section==3\">\n  <table class=\"table table-striped\">\n    <tr>\n      <th>Name</th>\n      <th>Birth Year</th>\n      <th>Select!</th>\n    </tr>\n    <tr *ngFor=\"let item of actorsDB\">\n      <td>{{item.name}}</td>\n      <td>{{item.bYear}}</td>\n      <td>\n        <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onSelectUpdate(item)\">Update</button>\n      </td>\n    </tr>\n  </table>\n  <hr>\n  <div *ngIf=\"actorsDB.length>0\">\n    <div class=\"form-group\">\n      <label for=\"actorFirstNameUpdate\">Full Name</label>\n      <input type=\"text\" class=\"form-control\" id=\"actorFirstNameUpdate\" [(ngModel)]=\"fullName\" required>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"actorYearUpdate\">Birth Year</label>\n      <input type=\"number\" class=\"form-control\" id=\"actorYearUpdate\" [(ngModel)]=\"bYear\" required>\n    </div>\n    <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onUpdateActor()\">Update Actor</button>\n  </div>\n</div>\n\n<div *ngIf=\"section==4\">\n  <table class=\"table table-striped\">\n    <tr>\n      <th>Name</th>\n      <th>Birth Year</th>\n      <th>Delete?</th>\n    </tr>\n    <tr *ngFor=\"let item of actorsDB\">\n      <td>{{item.name}}</td>\n      <td>{{item.bYear}}</td>\n      <td>\n        <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onDeleteActor(item)\">Delete</button>\n      </td>\n    </tr>\n  </table>\n</div>\n<div *ngIf=\"section==5\">\n\n  <div class=\"form-group\">\n    <label for=\"movieName\">Movie Title</label>\n    <input type=\"text\" class=\"form-control\" id=\"movieName\" [(ngModel)]=\"movieTitle\" required>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"movieYear\">Movie Year</label>\n    <input type=\"date\" class=\"form-control\" id=\"movieYear\" [(ngModel)]=\"movieYear\" required>\n  </div>\n  <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onAddMovie()\">Add Movie</button>\n\n</div>\n<div *ngIf=\"section==6\">\n\n  <table class=\"table table-striped\">\n    <tr>\n      <th>Title</th>\n      <th>Year</th>\n      <th>Actor</th>\n      <th>Delete?</th>\n    </tr>\n    <tr *ngFor=\"let item of movieDB\">\n      <td>{{item.title}}</td>\n      <td>{{item.year}}</td>\n      <td>{{item.actors.fullName}}</td>\n      <td>\n        <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onDeleteMovie(item._id)\">Delete</button>\n      </td>\n    </tr>\n  </table>\n\n</div>\n<div *ngIf=\"section==7\">\n  <div class=\"form-group\">\n\n    <label for=\"actor\">Add Actor</label>\n    <select id=\"actor\" class=\"form-control\" [(ngModel)]=\"fullName\">\n      <option *ngFor=\"let item of actorsDB\">{{item.name}}</option>\n    </select>\n\n    <label for=\"movie\">To Movie</label>\n    <select id=\"movie\" class=\"form-control\" [(ngModel)]=\"movieTitle\">\n      <option *ngFor=\"let item of movieDB\">{{item.title}}</option>\n    </select>\n\n  </div>\n  <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onAddActor()\">Add</button>\n</div>\n"
 
 /***/ }),
 
@@ -57,7 +57,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActorComponent", function() { return ActorComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _database_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../database.service */ "./src/app/database.service.ts");
-/* harmony import */ var _selection_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../selection.service */ "./src/app/selection.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -69,17 +68,63 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-
 var ActorComponent = /** @class */ (function () {
-    function ActorComponent(dbService, selectionService) {
+    function ActorComponent(dbService) {
         this.dbService = dbService;
-        this.selectionService = selectionService;
         this.actorsDB = [];
+        this.movieDB = [];
         this.section = 1;
         this.fullName = '';
         this.bYear = 0;
         this.actorId = '';
+        this.movieTitle = '';
+        this.movieYear = 0;
     }
+    ActorComponent.prototype.ngOnInit = function () {
+        this.onGetActors();
+        this.onGetMovies();
+    };
+    ActorComponent.prototype.onAddMovie = function () {
+        var _this = this;
+        var obj = { title: this.movieTitle, year: this.movieYear };
+        this.dbService.createMovie(obj).subscribe(function (result) {
+            _this.changeSection(1);
+            _this.onGetMovies();
+        });
+    };
+    ActorComponent.prototype.onGetMovies = function () {
+        var _this = this;
+        this.dbService.getMovies().subscribe(function (data) {
+            _this.movieDB = data;
+        });
+    };
+    ActorComponent.prototype.onAddActor = function () {
+        var _this = this;
+        var obj = { movieTitle: this.movieTitle, actorName: this.fullName };
+        this.dbService.addActor(obj).subscribe(function (result) {
+            _this.changeSection(1);
+            _this.onGetActors();
+            _this.onGetMovies();
+        });
+    };
+    ActorComponent.prototype.onDeleteMovie = function (id) {
+        var _this = this;
+        this.dbService.deleteMovie(id).subscribe(function (result) {
+            _this.onGetMovies();
+            _this.onGetActors();
+        });
+    };
+    ActorComponent.prototype.changeSection = function (sectionId) {
+        this.section = sectionId;
+        this.resetValues();
+    };
+    ActorComponent.prototype.resetValues = function () {
+        this.fullName = '';
+        this.bYear = 0;
+        this.actorId = '';
+        this.movieTitle = '';
+        this.movieYear = 0;
+    };
     // Get all Actors
     ActorComponent.prototype.onGetActors = function () {
         var _this = this;
@@ -92,7 +137,9 @@ var ActorComponent = /** @class */ (function () {
         var _this = this;
         var obj = { name: this.fullName, bYear: this.bYear };
         this.dbService.createActor(obj).subscribe(function (result) {
+            _this.changeSection(1);
             _this.onGetActors();
+            _this.onGetMovies();
         });
     };
     // Update an Actor
@@ -106,6 +153,7 @@ var ActorComponent = /** @class */ (function () {
         var obj = { name: this.fullName, bYear: this.bYear };
         this.dbService.updateActor(this.actorId, obj).subscribe(function (result) {
             _this.onGetActors();
+            _this.onGetMovies();
         });
     };
     // Delete Actor
@@ -113,21 +161,8 @@ var ActorComponent = /** @class */ (function () {
         var _this = this;
         this.dbService.deleteActor(item._id).subscribe(function (result) {
             _this.onGetActors();
+            _this.onGetMovies();
         });
-    };
-    // This lifecycle callback function will be invoked with the component get initialized by Angular.
-    ActorComponent.prototype.ngOnInit = function () {
-        this.getSelection();
-        this.onGetActors();
-    };
-    ActorComponent.prototype.resetValues = function () {
-        this.fullName = '';
-        this.bYear = 0;
-        this.actorId = '';
-    };
-    ActorComponent.prototype.getSelection = function () {
-        this.section = this.selectionService.getSelection();
-        this.resetValues();
     };
     ActorComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -135,7 +170,7 @@ var ActorComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./actor.component.html */ "./src/app/actor/actor.component.html"),
             styles: [__webpack_require__(/*! ./actor.component.css */ "./src/app/actor/actor.component.css")]
         }),
-        __metadata("design:paramtypes", [_database_service__WEBPACK_IMPORTED_MODULE_1__["DatabaseService"], _selection_service__WEBPACK_IMPORTED_MODULE_2__["SelectionService"]])
+        __metadata("design:paramtypes", [_database_service__WEBPACK_IMPORTED_MODULE_1__["DatabaseService"]])
     ], ActorComponent);
     return ActorComponent;
 }());
@@ -162,7 +197,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron text-center\">\n  <h1>Actors DB System</h1>\n</div>\n<!-- The navigation bar -->\n<nav class=\"navbar navbar-expand-sm bg-light\">\n  <ul class=\"navbar-nav\">\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(1)\">Home</a>\n    </li>\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(2)\">Add Actor</a>\n    </li>\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(3)\">Update Actor</a>\n    </li>\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(4)\">Delete Actor</a>\n    </li>\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(5)\">Add Movie</a>\n    </li>\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(6)\">Delete Movie</a>\n    </li>\n    <li class=\"nav-item\" style=\"padding-left:0.2in\">\n      <a class=\"btn btn-primary\" (click)=\"changeSection(7)\">Add Movie To Actor</a>\n    </li>\n  </ul>\n</nav>\n\n<div *ngIf=\"section==1\">\n  <app-actor></app-actor>\n</div>\n<div *ngIf=\"section==2\">\n  <app-actor></app-actor>\n</div>\n<div *ngIf=\"section==3\">\n  <app-actor></app-actor>\n</div>\n<div *ngIf=\"section==4\">\n  <app-actor></app-actor>\n</div>\n<div *ngIf=\"section==5\">\n  <app-movie></app-movie>\n</div>\n<div *ngIf=\"section==6\">\n  <app-movie></app-movie>\n</div>\n<div *ngIf=\"section==7\">\n  <app-movie></app-movie>\n</div>\n"
+module.exports = "<app-actor></app-actor>\n"
 
 /***/ }),
 
@@ -177,34 +212,23 @@ module.exports = "<div class=\"jumbotron text-center\">\n  <h1>Actors DB System<
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _selection_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./selection.service */ "./src/app/selection.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(selectionService) {
-        this.selectionService = selectionService;
-        this.section = 1;
+    function AppComponent() {
+        this.title = 'FIT2095-Lab9-Tmp';
     }
-    AppComponent.prototype.changeSection = function (sectionId) {
-        this.section = sectionId;
-        this.selectionService.changeSelection(sectionId);
-    };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
-        }),
-        __metadata("design:paramtypes", [_selection_service__WEBPACK_IMPORTED_MODULE_1__["SelectionService"]])
+        })
     ], AppComponent);
     return AppComponent;
 }());
@@ -230,16 +254,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _database_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./database.service */ "./src/app/database.service.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _movie_movie_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./movie/movie.component */ "./src/app/movie/movie.component.ts");
-/* harmony import */ var _selection_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./selection.service */ "./src/app/selection.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
-
 
 
 
@@ -254,15 +274,14 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
-                _actor_actor_component__WEBPACK_IMPORTED_MODULE_3__["ActorComponent"],
-                _movie_movie_component__WEBPACK_IMPORTED_MODULE_7__["MovieComponent"]
+                _actor_actor_component__WEBPACK_IMPORTED_MODULE_3__["ActorComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"]
             ],
-            providers: [_database_service__WEBPACK_IMPORTED_MODULE_4__["DatabaseService"], _selection_service__WEBPACK_IMPORTED_MODULE_8__["SelectionService"]],
+            providers: [_database_service__WEBPACK_IMPORTED_MODULE_4__["DatabaseService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
     ], AppModule);
@@ -328,9 +347,7 @@ var DatabaseService = /** @class */ (function () {
         return this.http.get('/movies');
     };
     DatabaseService.prototype.addActor = function (data) {
-        var movieId = data.movieId;
-        var actorId = data.actorId;
-        return this.http.put('/movies/' + movieId + actorId, httpOptions);
+        return this.http.put('/actors/' + data.actorName + '/' + data.movieTitle, httpOptions);
     };
     DatabaseService.prototype.deleteMovie = function (id) {
         return this.http.delete('/movies/' + id, httpOptions);
@@ -342,163 +359,6 @@ var DatabaseService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], DatabaseService);
     return DatabaseService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/movie/movie.component.css":
-/*!*******************************************!*\
-  !*** ./src/app/movie/movie.component.css ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/movie/movie.component.html":
-/*!********************************************!*\
-  !*** ./src/app/movie/movie.component.html ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- Section 5: Add Movie -->\n<div class=\"section\" *ngIf=\"movieSection==5\">\n  <div class=\"form-group\">\n    <label for=\"movieName\">Movie Title</label>\n    <input type=\"text\" class=\"form-control\" id=\"movieName\" [(ngModel)]=\"movieTitle\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"movieYear\">Movie Year</label>\n    <input type=\"number\" class=\"form-control\" id=\"movieYear\" [(ngModel)]=\"movieYear\">\n  </div>\n  <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onAddMovie()\">Add Movie</button>\n\n</div>\n\n<!-- Section 6: Delete Movie -->\n<div class=\"section\" *ngIf=\"movieSection==6\">\n  <table class=\"table table-striped\">\n    <tr>\n      <th>Title</th>\n      <th>Year</th>\n      <th>Actor</th>\n      <th>Delete?</th>\n    </tr>\n    <tr *ngFor=\"let item of movieDB\">\n      <td>{{item.title}}</td>\n      <td>{{item.year}}</td>\n      <td>{{item.actors.fullName}}</td>\n      <td>\n        <button type=\"submit\" class=\"btn btn-primary\" (click)=\"onDeleteMovie(item._id)\">Delete</button>\n      </td>\n    </tr>\n  </table>\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/movie/movie.component.ts":
-/*!******************************************!*\
-  !*** ./src/app/movie/movie.component.ts ***!
-  \******************************************/
-/*! exports provided: MovieComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MovieComponent", function() { return MovieComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _database_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../database.service */ "./src/app/database.service.ts");
-/* harmony import */ var _selection_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../selection.service */ "./src/app/selection.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var MovieComponent = /** @class */ (function () {
-    function MovieComponent(dbService, selectionService) {
-        this.dbService = dbService;
-        this.selectionService = selectionService;
-        this.movieDB = [];
-        this.movieTitle = '';
-        this.movieYear = 0;
-        this.movieSection = 1;
-    }
-    MovieComponent.prototype.ngOnInit = function () {
-        this.getSelection();
-        this.onGetMovies();
-    };
-    MovieComponent.prototype.onAddMovie = function () {
-        var _this = this;
-        var obj = { title: this.movieTitle, year: this.movieYear };
-        this.dbService.createMovie(obj).subscribe(function (result) {
-            _this.onGetMovies();
-        });
-    };
-    MovieComponent.prototype.onGetMovies = function () {
-        var _this = this;
-        this.dbService.getMovies().subscribe(function (data) {
-            _this.movieDB = data;
-        });
-    };
-    MovieComponent.prototype.onAddActor = function (movieId, actorId) {
-        var _this = this;
-        var obj = { movieId: movieId, actorId: actorId };
-        this.dbService.addActor(obj).subscribe(function (result) {
-            _this.onGetMovies();
-        });
-    };
-    MovieComponent.prototype.onDeleteMovie = function (id) {
-        var _this = this;
-        this.dbService.deleteMovie(id).subscribe(function (result) {
-            _this.onGetMovies();
-        });
-    };
-    MovieComponent.prototype.getSelection = function () {
-        this.movieSection = this.selectionService.getSelection();
-        this.resetValues();
-    };
-    MovieComponent.prototype.resetValues = function () {
-        this.movieTitle = '';
-        this.movieYear = 0;
-    };
-    MovieComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-movie',
-            template: __webpack_require__(/*! ./movie.component.html */ "./src/app/movie/movie.component.html"),
-            styles: [__webpack_require__(/*! ./movie.component.css */ "./src/app/movie/movie.component.css")]
-        }),
-        __metadata("design:paramtypes", [_database_service__WEBPACK_IMPORTED_MODULE_1__["DatabaseService"], _selection_service__WEBPACK_IMPORTED_MODULE_2__["SelectionService"]])
-    ], MovieComponent);
-    return MovieComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/selection.service.ts":
-/*!**************************************!*\
-  !*** ./src/app/selection.service.ts ***!
-  \**************************************/
-/*! exports provided: SelectionService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectionService", function() { return SelectionService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var SelectionService = /** @class */ (function () {
-    function SelectionService() {
-    }
-    SelectionService_1 = SelectionService;
-    SelectionService.prototype.changeSelection = function (selectionID) {
-        SelectionService_1.selection = selectionID;
-        console.log(SelectionService_1.selection);
-        return true;
-    };
-    SelectionService.prototype.getSelection = function () {
-        console.log(SelectionService_1.selection);
-        return SelectionService_1.selection;
-    };
-    var SelectionService_1;
-    SelectionService = SelectionService_1 = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
-        }),
-        __metadata("design:paramtypes", [])
-    ], SelectionService);
-    return SelectionService;
 }());
 
 

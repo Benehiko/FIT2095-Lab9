@@ -7,20 +7,13 @@ const actorSchema = new mongoose.Schema({
         required: true
     },
     bYear: {
-        validate: {
-            validator: function (newAge) {
-                if (Number.isInteger(newAge))
-                    return true;
-                else return false
-            },
-            message: 'Birth year should be integer'
-        },
-        type: Number,
+        type: Date,
         required: true
     },
     movies: [{
         type: mongoose.Schema.ObjectId,
-        ref: 'Movie'
+        ref: 'Movie',
+        unique: true
     }]
-});
+}, {strict: true});
 module.exports = mongoose.model('Actor', actorSchema);

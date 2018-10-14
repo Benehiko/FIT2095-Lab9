@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FIT2095-Lab9": {
+    "FIT2095-Lab9-Tmp": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/FIT2095-Lab9",
+            "outputPath": "dist/FIT2095-Lab9-Tmp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -50,18 +51,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "FIT2095-Lab9:build"
+            "browserTarget": "FIT2095-Lab9-Tmp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "FIT2095-Lab9:build:production"
+              "browserTarget": "FIT2095-Lab9-Tmp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FIT2095-Lab9:build"
+            "browserTarget": "FIT2095-Lab9-Tmp:build"
           }
         },
         "test": {
@@ -95,7 +96,7 @@
         }
       }
     },
-    "FIT2095-Lab9-e2e": {
+    "FIT2095-Lab9-Tmp-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +104,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "FIT2095-Lab9:serve"
+            "devServerTarget": "FIT2095-Lab9-Tmp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "FIT2095-Lab9:serve:production"
+              "devServerTarget": "FIT2095-Lab9-Tmp:serve:production"
             }
           }
         },
@@ -123,5 +124,5 @@
       }
     }
   },
-  "defaultProject": "FIT2095-Lab9"
+  "defaultProject": "FIT2095-Lab9-Tmp"
 }

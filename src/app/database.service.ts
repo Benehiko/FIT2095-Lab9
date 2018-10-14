@@ -48,9 +48,7 @@ export class DatabaseService {
   }
 
   addActor(data) {
-    const movieId = data.movieId;
-    const actorId = data.actorId;
-    return this.http.put('/movies/' + movieId + actorId, httpOptions);
+    return this.http.put('/actors/' + data.actorName + '/' + data.movieTitle, httpOptions);
   }
 
   deleteMovie(id) {

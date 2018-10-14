@@ -6,21 +6,18 @@ import { ActorComponent } from './actor/actor.component';
 import {DatabaseService} from './database.service';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { MovieComponent } from './movie/movie.component';
-import {SelectionService} from './selection.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ActorComponent,
-    MovieComponent
+    ActorComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule
   ],
-  providers: [DatabaseService, SelectionService],
+  providers: [DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

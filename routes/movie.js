@@ -59,19 +59,16 @@ module.exports = {
         });
     },
     addActor: function(req, res){
-        let movieID = new mongoose.Types.ObjectId(req.params.movieId);
-        let actorID = new mongoose.Types.ObjectId(req.params.actorId);
-
-        Movie.findOne({ _id: movieID }, function (err, movie) {
+        Movie.findOne({ title : req.params.movieTitle }, function (err, movie) {
             if (err) return res.status(400).json(err);
             if (!movie) return res.status(404).json();
-            Actor.findOne({ _id: actorID }, function (err, actor) {
+            Actor.findOne({ name : req.params.actorName }, function (err, actor) {
                 if (err) return res.status(400).json(err);
                 if (!actor) return res.status(404).json();
-                movie.actors.push(actor._id);
-                movie.save(function (err) {
+                actor.movies.push(movie._id);
+                actor.save(function (err) {
                     if (err) return res.status(500).json(err);
-                    res.json(movie);
+                    res.json(actor);
                 });
             })
         });

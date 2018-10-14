@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {DatabaseService} from '../database.service';
-import {SelectionService} from '../selection.service';
 
 @Component({
   selector: 'app-actor',
@@ -10,12 +9,63 @@ import {SelectionService} from '../selection.service';
 export class ActorComponent implements OnInit {
 
   actorsDB: any[] = [];
+  movieDB: any[] = [];
   section = 1;
   fullName = '';
   bYear = 0;
   actorId = '';
+  movieTitle = '';
+  movieYear = 0;
 
-  constructor(private dbService: DatabaseService, private selectionService: SelectionService) {
+  constructor(private dbService: DatabaseService) {
+  }
+
+  ngOnInit() {
+    this.onGetActors();
+    this.onGetMovies();
+  }
+
+  onAddMovie() {
+    const obj = {title: this.movieTitle, year: this.movieYear};
+    this.dbService.createMovie(obj).subscribe(result => {
+      this.changeSection(1);
+      this.onGetMovies();
+    });
+  }
+
+  onGetMovies() {
+    this.dbService.getMovies().subscribe((data: any[]) => {
+      this.movieDB = data;
+    });
+  }
+
+  onAddActor() {
+    const obj = {movieTitle: this.movieTitle, actorName: this.fullName};
+    this.dbService.addActor(obj).subscribe(result => {
+      this.changeSection(1);
+      this.onGetActors();
+      this.onGetMovies();
+    });
+  }
+
+  onDeleteMovie(id) {
+    this.dbService.deleteMovie(id).subscribe(result => {
+      this.onGetMovies();
+      this.onGetActors();
+    });
+  }
+
+  changeSection(sectionId) {
+    this.section = sectionId;
+    this.resetValues();
+  }
+
+  resetValues() {
+    this.fullName = '';
+    this.bYear = 0;
+    this.actorId = '';
+    this.movieTitle = '';
+    this.movieYear = 0;
   }
 
   // Get all Actors
@@ -29,7 +79,9 @@ export class ActorComponent implements OnInit {
   onSaveActor() {
     const obj = {name: this.fullName, bYear: this.bYear};
     this.dbService.createActor(obj).subscribe(result => {
+      this.changeSection(1);
       this.onGetActors();
+      this.onGetMovies();
     });
   }
 
@@ -44,6 +96,7 @@ export class ActorComponent implements OnInit {
     const obj = {name: this.fullName, bYear: this.bYear};
     this.dbService.updateActor(this.actorId, obj).subscribe(result => {
       this.onGetActors();
+      this.onGetMovies();
     });
   }
 
@@ -51,24 +104,7 @@ export class ActorComponent implements OnInit {
   onDeleteActor(item) {
     this.dbService.deleteActor(item._id).subscribe(result => {
       this.onGetActors();
+      this.onGetMovies();
     });
   }
-
-  // This lifecycle callback function will be invoked with the component get initialized by Angular.
-  ngOnInit() {
-    this.getSelection();
-    this.onGetActors();
-  }
-
-  resetValues() {
-    this.fullName = '';
-    this.bYear = 0;
-    this.actorId = '';
-  }
-
-  getSelection() {
-    this.section = this.selectionService.getSelection();
-    this.resetValues();
-  }
-
 }

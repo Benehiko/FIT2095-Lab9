@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {SelectionService} from './selection.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +6,5 @@ import {SelectionService} from './selection.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  section = 1;
-
-  constructor(private selectionService: SelectionService) {
-  }
-
-  changeSection(sectionId) {
-    this.section = sectionId;
-    this.selectionService.changeSelection(sectionId);
-  }
+  title = 'FIT2095-Lab9-Tmp';
 }
